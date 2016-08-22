@@ -1,7 +1,7 @@
 //bookmarkify:
 //  $ npm install
-//  $ node_modules/.bin/uglify rearrange-pick-ticket.js | sed -e 's/^/javascript:/'
-(function() {
+//  $ node_modules/.bin/uglify rearrange-pick-ticket.js | sed -e 's/^/javascript:(/' -e 's/;*$/)();/'
+(window.fixpickticket = function() {
   var mkarr = function(coll) { return Array.prototype.slice.call(coll) }
   var groupBy = function(xs, key) {
     return xs.reduce(function(rv, x) {
@@ -36,4 +36,4 @@
   })
   orderContainer.innerHTML += newHtml.join("")
 //  window.mab = {obp: ordersByProduct, pel: orderContainer}
-})();
+})

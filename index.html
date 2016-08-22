@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+  <head>
+    <title>Fixed up pick ticket</title>
+    <script type="text/javascript" src="rearrange-pick-ticket.js"></script>
+    <style>
+      @media print {
+        .noprint { display: none }
+      }
+      #mailsource { display: block; width: 80%; height: 200px; }
+    </style>
+  </head>
+  <body>
+    <div class="noprint">
+      <textarea id="mailsource"></textarea>
+      <button id="render">Render</button>
+      <hr>
+    </div>
+    <div id="rendered">
+    </div>
+    <script>
+      var renderButton = document.getElementById("render")
+      var rawInput = document.getElementById("mailsource")
+      var outputDiv = document.getElementById("rendered")
+      renderButton.addEventListener("click", function() { render(outputDiv, rawInput.value, function(x) { console.log(x) }) })
+
+      window.render = function(el, input, st) {
+        st("prep")
+        var mailHtml = stripMailHeaders(input)
+        st("render")
+        el.innerHTML = mailHtml
+        st("css")
+        fixAllStyles(el)
+        st("reorder")
+        fixpickticket()
+        st("done")
+      }
+
+      var stripMailHeaders = function(input) {
+        var parts = input.split(/\n\r?\n/)
+        while (parts.length > 0 && (parts[0] == "" || parts[0].match(/^\s+Delivered-To:/))) {
+          parts.shift()
+        }
+        return parts.join("\n\n")
+      }
+
+      var fixAllStyles = function(el) {
+        var styleEls = el.getElementsByTagName("style")
+        for (i = 0; i < styleEls.length; i++) {
+          styleEls[i].innerText = fixStyles(styleEls[i].innerText)
+        }
+      }
+
+      var fixStyles = function(css) {
+        return css + " .order_div .order_in { float: none !important } .order_div { height: auto !important }"
+      }
+    </script>
+  </body>
+</head>
