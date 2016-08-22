@@ -1,0 +1,23 @@
+{
+  "name": "farmersmarketdotcom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "node-uglifier": "^0.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gist.github.com/73d72e29489145cc445ad1321c36e7f0.git"
+  },
+  "author": "Matt Burke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gist.github.com/73d72e29489145cc445ad1321c36e7f0"
+  },
+  "homepage": "https://gist.github.com/73d72e29489145cc445ad1321c36e7f0"
+}
