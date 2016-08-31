@@ -31,7 +31,7 @@
   Object.keys(ordersByProduct).forEach(function(k) {
     newHtml.push("<h2>" + k + "</h2>")
     ordersByProduct[k].sort(function(a,b){return a.custNum - b.custNum}).forEach(function(order) {
-      newHtml.push(order.html)
+      newHtml.push(order.html.replace(/&amp;#9634/, "&#9634;"))
     })
   })
   orderContainer.innerHTML += newHtml.join("")
